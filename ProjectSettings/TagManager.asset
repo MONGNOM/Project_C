@@ -41,3 +41,21 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: BackGround
+    uniqueID: 3844796565
+    locked: 0
+  - name: Grond
+    uniqueID: 2055157433
+    locked: 0
+  - name: Monster
+    uniqueID: 1496195473
+    locked: 0
+  - name: Player
+    uniqueID: 813291057
+    locked: 0
+  - name: ForeGround
+    uniqueID: 4247202573
+    locked: 0
+  - name: UI
+    uniqueID: 1183982377
+    locked: 0

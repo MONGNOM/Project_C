@@ -5,16 +5,19 @@ using UnityEngine.EventSystems;
 
 public class TouchMove : MonoBehaviour, IBeginDragHandler , IDragHandler
 {
+    [SerializeField]
+    private Player player;
+
+
+    public float speed;
+
     public void OnBeginDrag(PointerEventData eventData)
     {
-        Debug.Log(Input.mousePosition);
     }
 
     public void OnDrag(PointerEventData eventData)
     {
-        Debug.Log("움직임");
-        // 처음 시작 좌표 가져오고 위 아래 양 옆 측정
-        Debug.Log(Input.mousePosition);
+        
     }
    
 }

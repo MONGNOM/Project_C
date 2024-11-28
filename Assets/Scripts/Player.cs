@@ -39,6 +39,8 @@ public abstract class Player : MonoBehaviour
 
     protected void Start()
     {
+        curHp = maxHp;
+
         if (Gamepad.current != null)
         {
             // Gamepad가 연결되어 있다면 Control Scheme을 Gamepad로 설정
@@ -53,6 +55,11 @@ public abstract class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (curHp <= 0)
+        {   Die();
+            return;
+        }
+
         DetectEnemy();
 
         if (inPutMove.x >= 0)
@@ -69,12 +76,11 @@ public abstract class Player : MonoBehaviour
         inPutMove = value.Get<Vector2>();
     }
 
-    private void TakeHit(float damage)// 굳이 상속x  // 몬스터 동일
+    public void PlayerTakeHit(float damage)// 굳이 상속x  // 몬스터 동일
     {
         curHp -= damage;
 
-        if (curHp <= 0)
-            Die();
+        
         // 데미지 받음
     }
 
@@ -86,7 +92,7 @@ public abstract class Player : MonoBehaviour
             animator.SetBool("Walk", false);
             animator.SetBool("Idle", false);
             Attack();
-
+            collider.GetComponent<Monster>().MonsterTakeHit(damage);
         }
         else
         {
@@ -118,9 +124,6 @@ public abstract class Player : MonoBehaviour
 
     protected virtual void Attack() // 굳이 상속x // 몬스터 동일
     {
-        if (curHp <= 0)
-            return;
-
         animator.SetBool("attack", true);
     }
 

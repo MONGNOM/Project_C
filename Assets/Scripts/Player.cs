@@ -6,6 +6,8 @@ using UnityEngine.EventSystems;
 using System.Drawing;
 using UnityEngine.InputSystem.HID;
 using static UnityEngine.EventSystems.StandaloneInputModule;
+using System.Runtime.CompilerServices;
+using System;
 
 enum PlayerState { Idle, Walk, TakeHit, Attack, Die}
 
@@ -13,14 +15,22 @@ enum PlayerState { Idle, Walk, TakeHit, Attack, Die}
 [RequireComponent(typeof(SpriteRenderer))]
 public abstract class Player : MonoBehaviour 
 {
+    public float CurHp { get {return curHp; } private set { curHp = value; Hp?.Invoke(curHp); } }
+    public event Action<float> Hp;
+
     [Header("플레이어 스탯")]
     [SerializeField] protected float maxHp;
     [SerializeField] protected float curHp;
     [SerializeField] protected float damage;
     [SerializeField] protected float def;
-    [SerializeField] protected Vector2 boxRange;
-    [SerializeField] protected float playerSpeed;
     
+    [Header("플레이어 공격범위")]
+    [SerializeField] protected Vector2 boxRange;
+    [Header("플레이어 이동속도")]
+    [SerializeField] protected float moveSpeed;
+    [Header("플레이어 공격속도")]
+    [SerializeField] protected float attackSpeed = 2;
+
     [Header("플레이어 이동벡터")]
     [SerializeField] private Vector2 inPutMove;
 
@@ -28,6 +38,7 @@ public abstract class Player : MonoBehaviour
     private PlayerInput playerInput;
     private SpriteRenderer spriteRenderer;
     private Animator animator;
+    private Monster monster;
 
     private void Awake()
     {
@@ -35,12 +46,14 @@ public abstract class Player : MonoBehaviour
         playerInput = GetComponent<PlayerInput>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
+        monster = FindAnyObjectByType<Monster>();
     }
 
     protected void Start()
     {
         curHp = maxHp;
-
+        Hp += HpChange;
+        animator.SetFloat("AttackSpeed", attackSpeed);
         if (Gamepad.current != null)
         {
             // Gamepad가 연결되어 있다면 Control Scheme을 Gamepad로 설정
@@ -55,21 +68,29 @@ public abstract class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (curHp <= 0)
-        {   Die();
-            return;
-        }
-
         DetectEnemy();
-
+        
         if (inPutMove.x >= 0)
             spriteRenderer.flipX = false;
         else
             spriteRenderer.flipX = true;
 
-        Vector2 vecMove = inPutMove * playerSpeed * Time.fixedDeltaTime;
+        Vector2 vecMove = inPutMove * moveSpeed * Time.fixedDeltaTime;
         rigid.MovePosition(rigid.position + vecMove);
     }
+
+    private void HpChange(float hp)
+    {
+        UIManager.instance.playerHpImage.fillAmount = hp;
+        Debug.Log("hp감소");
+    }
+
+    public void HitDamage()
+    {
+        monster.GetComponent<Monster>().MonsterTakeHit(damage);
+        // 몬스터가 다른애가 있다면..?
+    }
+
 
     public void OnMove(InputValue value)// 굳이 상속x
     {
@@ -78,10 +99,13 @@ public abstract class Player : MonoBehaviour
 
     public void PlayerTakeHit(float damage)// 굳이 상속x  // 몬스터 동일
     {
-        curHp -= damage;
+        if (curHp <= 0)
+        {
+            Die();
+            return;
+        }
 
-        
-        // 데미지 받음
+        CurHp -= damage;
     }
 
     protected virtual void DetectEnemy()
@@ -92,7 +116,7 @@ public abstract class Player : MonoBehaviour
             animator.SetBool("Walk", false);
             animator.SetBool("Idle", false);
             Attack();
-            collider.GetComponent<Monster>().MonsterTakeHit(damage);
+            //collider.GetComponent<Monster>().MonsterTakeHit(damage);
         }
         else
         {

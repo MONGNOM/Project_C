@@ -6,12 +6,16 @@ using UnityEngine.EventSystems;
 using System.Drawing;
 using UnityEngine.InputSystem.HID;
 using static UnityEngine.EventSystems.StandaloneInputModule;
+using System;
 
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(SpriteRenderer))]
 public abstract class Monster : MonoBehaviour
 {
+    public float CurHp { get { return curHp; } private set { curHp = value; Hp?.Invoke(curHp); } }
+    public event Action<float> Hp;
+
     [Header("몬스터 스탯")]
     [SerializeField] protected float maxHp;
     [SerializeField] protected float curHp;
@@ -45,26 +49,20 @@ public abstract class Monster : MonoBehaviour
     protected void Start()
     {
         curHp = maxHp;
+        Hp += HpChange;
+
+       
     }
 
     private void FixedUpdate()
     {
-
         if (curHp <= 0)
-        {
-            Die();
             return;
-        }
-
-        DetectEnemy();
+        
+            DetectEnemy();
     }
 
-    public void MonsterTakeHit(float damage)// 굳이 상속x  // 몬스터 동일
-    {
-        curHp -= damage;
-
-    }
-
+  
     protected virtual void DetectEnemy()
     {
         Collider2D collider = Physics2D.OverlapBox(transform.position, detectEnemyRange, 0, LayerMask.GetMask("Player"));
@@ -101,6 +99,25 @@ public abstract class Monster : MonoBehaviour
             animator.SetTrigger("Jump");
             monsterSpeed = 0.5f;
         }
+        
+    }
+
+    public void MonsterTakeHit(float damage)// 굳이 상속x  // 몬스터 동일
+    {
+        if (curHp <= 0)
+        {
+            Die();
+            return;
+        }
+
+        CurHp -= damage;
+
+    }
+
+    private void HpChange(float hp)
+    {
+        UIManager.instance.monsterHpImage.fillAmount = hp;
+        Debug.Log("hp감소");
     }
 
     public void HitDamage()
@@ -117,15 +134,7 @@ public abstract class Monster : MonoBehaviour
     {
         animator.SetTrigger("attack");
     }
-
     
-
-    private void pickUp() // 굳이 상속x 
-    {
-        // 주변에 아이템 있으면 줍기 
-        // 조건 (무게 초과시 안줍기)
-    }
-
     private void OnDrawGizmos()
     {
         Gizmos.color = UnityEngine.Color.yellow;

@@ -7,6 +7,10 @@ using System.Drawing;
 using UnityEngine.InputSystem.HID;
 using static UnityEngine.EventSystems.StandaloneInputModule;
 using System;
+using Random = UnityEngine.Random;
+using Unity.VisualScripting;
+using static UnityEditor.Progress;
+using System.Threading;
 
 
 [RequireComponent(typeof(Rigidbody2D))]
@@ -29,7 +33,11 @@ public abstract class Monster : MonoBehaviour
     [Header("몬스터 공격 거리")]
     [SerializeField] protected Vector2 attackEnemyRange;
 
-    
+    [Header("몬스터 드랍 리스트")] 
+    public List<Item> dropList;
+
+    public int randValue;
+    protected bool isDead;
 
     private Rigidbody2D rigid;
     private PlayerInput playerInput;
@@ -44,22 +52,20 @@ public abstract class Monster : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
         player = FindAnyObjectByType<Player>();
+        isDead = false;
     }
 
     protected void Start()
     {
         curHp = maxHp;
         Hp += HpChange;
-
-       
     }
 
     private void FixedUpdate()
     {
-        if (curHp <= 0)
-            return;
+        if (isDead) return;
         
-            DetectEnemy();
+        DetectEnemy();
     }
 
   
@@ -69,7 +75,6 @@ public abstract class Monster : MonoBehaviour
         if (collider != null)
         {
             Move(collider); // 따라가기 
-            
         }
         else
         {
@@ -79,20 +84,18 @@ public abstract class Monster : MonoBehaviour
 
     private void Move(Collider2D player)
     {
-        
-
-        // 움직일때 점프해야함
+        // 움직이는 코드
         Vector3 playerPos = player.transform.position - transform.position;
         playerPos.Normalize();
 
         transform.position += playerPos * monsterSpeed * Time.deltaTime;
 
+        // 공격 범위 안에 플레이어 찾는 코드
         Collider2D collider = Physics2D.OverlapBox(transform.position, attackEnemyRange, 0, LayerMask.GetMask("Player"));
         if (collider != null)
         {
             monsterSpeed = 0;
             Attack();
-            // 여기 들어왔으면 attack만 하게 해줘야ㅕ하는데/
         }
         else
         {
@@ -102,15 +105,17 @@ public abstract class Monster : MonoBehaviour
         
     }
 
-    public void MonsterTakeHit(float damage)// 굳이 상속x  // 몬스터 동일
+    public void MonsterTakeHit(float damage)
     {
+        if (isDead) return;
+
+        CurHp -= damage;
+
         if (curHp <= 0)
         {
             Die();
-            return;
         }
 
-        CurHp -= damage;
 
     }
 
@@ -125,12 +130,32 @@ public abstract class Monster : MonoBehaviour
         player.GetComponent<Player>().PlayerTakeHit(damage);
     }
 
-    protected virtual void Die() // 굳이 상속x // 몬스터 동일
+    protected virtual void Die() 
     {
-        animator.SetBool("Die", true);
+        isDead = true;
+
+        animator.SetTrigger("Die");
+        Destroy(gameObject, 0.6f);
+    }
+    protected virtual void DropGold()
+    {
+        int rand = Random.Range(0, 100);
+        dropList[0].price = rand;
     }
 
-    protected virtual void Attack() // 굳이 상속x // 몬스터 동일
+    protected virtual void DropItem() 
+    {
+        // 랜던으로 아이템 떨구는거 구현 했는데 이거 조언좀 구해볼 필요가 있음
+        int rand = Random.Range(0, dropList.Count);
+        randValue = rand;
+        if (rand == 0)
+        {
+            DropGold();
+        }
+        Instantiate(dropList[rand].prefab, transform.position, Quaternion.identity);
+    }
+
+    protected virtual void Attack()
     {
         animator.SetTrigger("attack");
     }

@@ -14,7 +14,7 @@ TagManager:
   - UI
   - Monster
   - Player
-  - 
+  - Item
   - 
   - 
   - 
@@ -53,6 +53,9 @@ TagManager:
     locked: 0
   - name: Player
     uniqueID: 813291057
+    locked: 0
+  - name: Item
+    uniqueID: 2389627255
     locked: 0
   - name: ForeGround
     uniqueID: 4247202573

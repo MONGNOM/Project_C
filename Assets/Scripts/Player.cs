@@ -26,10 +26,12 @@ public abstract class Player : MonoBehaviour
     
     [Header("플레이어 공격범위")]
     [SerializeField] protected Vector2 boxRange;
+    [Header("플레이어 줍기범위")]
+    [SerializeField] protected Vector2 pickupRange;
     [Header("플레이어 이동속도")]
     [SerializeField] protected float moveSpeed;
     [Header("플레이어 공격속도")]
-    [SerializeField] protected float attackSpeed = 2;
+    [SerializeField] protected float attackSpeed;
 
     [Header("플레이어 이동벡터")]
     [SerializeField] private Vector2 inPutMove;
@@ -47,13 +49,17 @@ public abstract class Player : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
         monster = FindAnyObjectByType<Monster>();
+        pickupRange = new Vector2(1, 1);
+        attackSpeed = 0.5f;
+        curHp = maxHp;
+        Hp += HpChange;
+        animator.SetFloat("AttackSpeed", attackSpeed);
     }
 
     protected void Start()
     {
-        curHp = maxHp;
-        Hp += HpChange;
-        animator.SetFloat("AttackSpeed", attackSpeed);
+       
+
         if (Gamepad.current != null)
         {
             // Gamepad가 연결되어 있다면 Control Scheme을 Gamepad로 설정
@@ -69,6 +75,7 @@ public abstract class Player : MonoBehaviour
     private void FixedUpdate()
     {
         DetectEnemy();
+        ItemPickUp();
         
         if (inPutMove.x >= 0)
             spriteRenderer.flipX = false;
@@ -87,6 +94,9 @@ public abstract class Player : MonoBehaviour
 
     public void HitDamage()
     {
+        // 이거 수정할 필요가 있음
+        // 범위로 있을때만 가능하게 조건 줘야겠는데
+        if (monster != null)
         monster.GetComponent<Monster>().MonsterTakeHit(damage);
         // 몬스터가 다른애가 있다면..?
     }
@@ -151,15 +161,21 @@ public abstract class Player : MonoBehaviour
         animator.SetBool("attack", true);
     }
 
-    private void pickUp() // 굳이 상속x 
+    private void ItemPickUp() // 굳이 상속x 
     {
-        // 주변에 아이템 있으면 줍기 
-        // 조건 (무게 초과시 안줍기)
+        Collider2D collider = Physics2D.OverlapBox(transform.position, pickupRange, 0, LayerMask.GetMask("Item"));
+        if (collider != null)
+        {
+            Debug.Log("아이템 감지");
+        }
     }
 
     private void OnDrawGizmos()
     {
-        Gizmos.color = UnityEngine.Color.yellow;
+        Gizmos.color = UnityEngine.Color.red;
         Gizmos.DrawWireCube(transform.position, boxRange);
+
+        Gizmos.color = UnityEngine.Color.green;
+        Gizmos.DrawWireCube(transform.position, pickupRange);
     }
 }

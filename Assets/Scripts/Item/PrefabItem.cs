@@ -18,12 +18,14 @@ public class PrefabItem : MonoBehaviour
     public int price;
     public string description;
     public Monster monster;
+    private Inventory inventory;
 
 
     private void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         monster = FindAnyObjectByType<Monster>();
+        inventory = FindAnyObjectByType<Inventory>();
     }
 
     void Start()
@@ -34,21 +36,26 @@ public class PrefabItem : MonoBehaviour
     void ItemSet(Monster monster)
     {
         spriteRenderer.sprite = monster.dropList[monster.randValue].icon;
-        itemtype = (ItemType)monster.dropList[monster.randValue].itemtype;
-        name = monster.dropList[monster.randValue].name;
-        damage = monster.dropList[monster.randValue].damage;
-        attackspeed = monster.dropList[monster.randValue].attackspeed;
-        def = monster.dropList[monster.randValue].def;
-        kg = monster.dropList[monster.randValue].kg;
-        price = monster.dropList[monster.randValue].price;
-        description = monster.dropList[monster.randValue].description;
+        icon                  = monster.dropList[monster.randValue].icon;
+        itemtype              = (ItemType)monster.dropList[monster.randValue].itemtype;
+        name                  = monster.dropList[monster.randValue].name;
+        damage                = monster.dropList[monster.randValue].damage;
+        attackspeed           = monster.dropList[monster.randValue].attackspeed;
+        def                   = monster.dropList[monster.randValue].def;
+        kg                    = monster.dropList[monster.randValue].kg;
+        price                 = monster.dropList[monster.randValue].price;
+        description           = monster.dropList[monster.randValue].description;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.GetComponent<Player>())
         {
-            Destroy(gameObject);
+            if (name != "Coin" && inventory.CurKg >= inventory.MaxKg)
+                return;
+
+            Destroy(gameObject, 0.1f);
         }
+        
     }
 }

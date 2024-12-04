@@ -136,22 +136,22 @@ public abstract class Monster : MonoBehaviour
         animator.SetTrigger("Die");
         Destroy(gameObject, 0.6f);
     }
-    protected virtual void DropGold()
+    protected virtual void DropGold(Item item)
     {
+        Debug.Log("돈떨꿈");
         int rand = Random.Range(0, 100);
-        dropList[0].price = rand;
+        item.price = rand;
     }
 
     protected virtual void DropItem() 
     {
-        // 랜던으로 아이템 떨구는거 구현 했는데 이거 조언좀 구해볼 필요가 있음
+        Debug.Log("아이템떨꿈");
         int rand = Random.Range(0, dropList.Count);
         randValue = rand;
-        if (rand == 0)
-        {
-            DropGold();
-        }
-        Instantiate(dropList[rand].prefab, transform.position, Quaternion.identity);
+        if (dropList[rand].name == "Coin")
+            DropGold(dropList[rand]);
+        
+            Instantiate(dropList[0].prefab, transform.position, Quaternion.identity);
     }
 
     protected virtual void Attack()

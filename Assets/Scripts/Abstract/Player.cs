@@ -24,6 +24,7 @@ public abstract class Player : MonoBehaviour
     [SerializeField] protected float damage;
     [SerializeField] protected float def;
     
+
     [Header("플레이어 공격범위")]
     [SerializeField] protected Vector2 boxRange;
     [Header("플레이어 줍기범위")]
@@ -35,12 +36,16 @@ public abstract class Player : MonoBehaviour
 
     [Header("플레이어 이동벡터")]
     [SerializeField] private Vector2 inPutMove;
+    
+    [Header("플레이어 인벤토리")]
+    [SerializeField] private Inventory inventory;
 
     private Rigidbody2D rigid;
     private PlayerInput playerInput;
     private SpriteRenderer spriteRenderer;
     private Animator animator;
     private Monster monster;
+   
 
     private void Awake()
     {
@@ -56,9 +61,14 @@ public abstract class Player : MonoBehaviour
         animator.SetFloat("AttackSpeed", attackSpeed);
     }
 
+
     protected void Start()
     {
-       
+
+        UIManager.instance.maxHp.text = maxHp.ToString();
+        UIManager.instance.damage.text = damage.ToString();
+        UIManager.instance.attackSpeed.text = attackSpeed.ToString();
+        UIManager.instance.def.text = def.ToString();
 
         if (Gamepad.current != null)
         {
@@ -70,13 +80,26 @@ public abstract class Player : MonoBehaviour
         {
             Debug.LogWarning("컨트롤러 연결실패");
         }
+
+        // StartCoroutine(AutoPickUp()); 티스토리작성 코루틴
+    }
+
+    IEnumerator AutoPickUp() //티스토리작성 코루틴
+    {
+        while (true)
+        {
+            ItemPickUp();
+            yield return new WaitForSeconds(1);
+            Debug.Log("코루틴감지");
+        }
+
     }
 
     private void FixedUpdate()
     {
         DetectEnemy();
-        ItemPickUp();
-        
+        //ItemPickUp();
+
         if (inPutMove.x >= 0)
             spriteRenderer.flipX = false;
         else
@@ -161,12 +184,26 @@ public abstract class Player : MonoBehaviour
         animator.SetBool("attack", true);
     }
 
-    private void ItemPickUp() // 굳이 상속x 
+    private void ItemPickUp() // 굳이 상속x  아이템 픽업 변경
     {
         Collider2D collider = Physics2D.OverlapBox(transform.position, pickupRange, 0, LayerMask.GetMask("Item"));
         if (collider != null)
         {
-            Debug.Log("아이템 감지");
+            PrefabItem item = collider.GetComponent<PrefabItem>();
+
+            if (item.name != "Coin" && inventory.CurKg < inventory.MaxKg)
+            {
+                Debug.Log("가벼움");
+                Debug.Log(item.name);
+                Debug.Log("아이템 감지");
+                Debug.Log(item.kg);
+                inventory.InventoryAddItem(item);
+                return;
+            }
+
+            UIManager.instance.inventoryCoin.text = item.price.ToString();// 코인 액수 전달
+            Debug.Log(item.price);
+            Debug.Log("돈 증가");
         }
     }
 
@@ -177,5 +214,19 @@ public abstract class Player : MonoBehaviour
 
         Gizmos.color = UnityEngine.Color.green;
         Gizmos.DrawWireCube(transform.position, pickupRange);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        // 아이템 픽업
+        PrefabItem item = collision.GetComponent<PrefabItem>();
+
+        if (item.name != "Coin" && inventory.CurKg < inventory.MaxKg)
+        {
+            inventory.InventoryAddItem(item);
+            return;
+        }
+
+        UIManager.instance.inventoryCoin.text = item.price.ToString();// 코인 액수 전달
     }
 }

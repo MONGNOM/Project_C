@@ -314,6 +314,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: fe3a39841e957c04fa879869a2661193, type: 2}
   - {fileID: 11400000, guid: 256a31935e85c9543bbd1f6d9512afec, type: 2}
   randValue: 0
+  hpimage: {fileID: 3542541245215742570}
 --- !u!212 &9171736059386580449
 SpriteRenderer:
   m_ObjectHideFlags: 0

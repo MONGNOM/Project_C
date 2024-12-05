@@ -22,11 +22,6 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI maxKg;
     public TextMeshProUGUI curKg;
 
-  
-
-    [Header("몬스터 UI")]
-    public Image monsterHpImage;
-
     [Header("인벤토리 코인금액")]
     public TextMeshProUGUI inventoryCoin;
 

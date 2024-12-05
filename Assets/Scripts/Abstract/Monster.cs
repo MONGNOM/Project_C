@@ -10,6 +10,7 @@ using System;
 using Random = UnityEngine.Random;
 using Unity.VisualScripting;
 using System.Threading;
+using UnityEngine.UI;
 
 
 [RequireComponent(typeof(Rigidbody2D))]
@@ -43,6 +44,7 @@ public abstract class Monster : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private Animator animator;
     private Player player;
+    public Image hpimage;
 
     private void Awake()
     {
@@ -120,7 +122,7 @@ public abstract class Monster : MonoBehaviour
 
     private void HpChange(float hp)
     {
-        UIManager.instance.monsterHpImage.fillAmount = hp;
+        hpimage.fillAmount = hp;
         Debug.Log("hp°¨¼Ò");
     }
 

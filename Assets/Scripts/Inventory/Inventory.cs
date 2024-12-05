@@ -28,7 +28,7 @@ public class Inventory : MonoBehaviour
         MaxWeightText(MaxKg);
         CurWeighttext(CurKg);
         WeightChange(CurKg);
-    }    
+    }
     private void Start()
     {
         inventoryMaxweight += MaxWeightText;
@@ -40,7 +40,8 @@ public class Inventory : MonoBehaviour
     {
         UIManager.instance.playerKgImage.fillAmount = weight;
         Debug.Log("kg증가");
-    }
+    } 
+
 
     public void InventoryActive()
     {
@@ -61,6 +62,7 @@ public class Inventory : MonoBehaviour
         {
             if (slot[i].item == null && item.name != "Coin")
             {
+                Debug.Log(slot[i]);
                 slot[i].AddItem(item);
                 AddWeight(item.kg);
                 Debug.Log("인벤토리 아이템 추가");

@@ -44,8 +44,7 @@ public abstract class Player : MonoBehaviour
     private PlayerInput playerInput;
     private SpriteRenderer spriteRenderer;
     private Animator animator;
-    private Monster monster;
-   
+    private float attackcool;
 
     private void Awake()
     {
@@ -53,7 +52,6 @@ public abstract class Player : MonoBehaviour
         playerInput = GetComponent<PlayerInput>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
-        monster = FindAnyObjectByType<Monster>();
         pickupRange = new Vector2(1, 1);
         attackSpeed = 0.5f;
         curHp = maxHp;
@@ -64,7 +62,6 @@ public abstract class Player : MonoBehaviour
 
     protected void Start()
     {
-
         UIManager.instance.maxHp.text = maxHp.ToString();
         UIManager.instance.damage.text = damage.ToString();
         UIManager.instance.attackSpeed.text = attackSpeed.ToString();
@@ -80,6 +77,7 @@ public abstract class Player : MonoBehaviour
         {
             Debug.LogWarning("컨트롤러 연결실패");
         }
+
 
         // StartCoroutine(AutoPickUp()); 티스토리작성 코루틴
     }
@@ -108,20 +106,17 @@ public abstract class Player : MonoBehaviour
         Vector2 vecMove = inPutMove * moveSpeed * Time.fixedDeltaTime;
         rigid.MovePosition(rigid.position + vecMove);
     }
+    private void Update()
+    {
+        attackcool += Time.deltaTime;
+        
+        
+    }
 
     private void HpChange(float hp)
     {
         UIManager.instance.playerHpImage.fillAmount = hp;
         Debug.Log("hp감소");
-    }
-
-    public void HitDamage()
-    {
-        // 이거 수정할 필요가 있음
-        // 범위로 있을때만 가능하게 조건 줘야겠는데
-        if (monster != null)
-        monster.GetComponent<Monster>().MonsterTakeHit(damage);
-        // 몬스터가 다른애가 있다면..?
     }
 
 
@@ -148,8 +143,12 @@ public abstract class Player : MonoBehaviour
         {
             animator.SetBool("Walk", false);
             animator.SetBool("Idle", false);
-            Attack();
-            //collider.GetComponent<Monster>().MonsterTakeHit(damage);
+            
+            if (attackcool > attackSpeed)
+            {
+                Attack(collider);
+                attackcool = 0;
+            }
         }
         else
         {
@@ -169,6 +168,13 @@ public abstract class Player : MonoBehaviour
         }
     }
 
+    protected virtual void Attack(Collider2D collider) // 굳이 상속x // 몬스터 동일
+    {
+        Debug.Log("공격ㄱ");
+        collider.GetComponent<Monster>().MonsterTakeHit(damage);
+        animator.SetBool("attack", true);
+    }
+
     protected virtual void Die() // 굳이 상속x // 몬스터 동일
     {
         animator.SetBool("Idle", false);
@@ -179,10 +185,7 @@ public abstract class Player : MonoBehaviour
         animator.SetBool("Die", true);
     }
 
-    protected virtual void Attack() // 굳이 상속x // 몬스터 동일
-    {
-        animator.SetBool("attack", true);
-    }
+   
 
     private void ItemPickUp() // 굳이 상속x  아이템 픽업 변경
     {

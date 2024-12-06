@@ -25,6 +25,7 @@ public class UIManager : MonoBehaviour
     [Header("인벤토리 코인금액")]
     public TextMeshProUGUI inventoryCoin;
 
+
     void Awake()
     {
 

@@ -310,8 +310,8 @@ MonoBehaviour:
   detectEnemyRange: {x: 3.5, y: 3.5}
   attackEnemyRange: {x: 1, y: 1}
   dropList:
-  - {fileID: 11400000, guid: b8ec14a4401a82b46b122de08266c201, type: 2}
   - {fileID: 11400000, guid: fe3a39841e957c04fa879869a2661193, type: 2}
+  - {fileID: 11400000, guid: b8ec14a4401a82b46b122de08266c201, type: 2}
   - {fileID: 11400000, guid: 256a31935e85c9543bbd1f6d9512afec, type: 2}
   randValue: 0
   hpimage: {fileID: 3542541245215742570}

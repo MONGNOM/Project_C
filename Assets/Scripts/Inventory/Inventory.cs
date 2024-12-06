@@ -8,7 +8,7 @@ using UnityEngine;
 public class Inventory : MonoBehaviour
 {
     public Slot[] slot;
-
+    public int countItem;
     private float maxKg;
     private float curKg;
 
@@ -40,7 +40,7 @@ public class Inventory : MonoBehaviour
     {
         UIManager.instance.playerKgImage.fillAmount = weight;
         Debug.Log("kg증가");
-    } 
+    }
 
 
     public void InventoryActive()
@@ -56,20 +56,35 @@ public class Inventory : MonoBehaviour
     }
 
 
+
     public void InventoryAddItem(PrefabItem item)
     {
         for (int i = 0; i < slot.Length; i++)
         {
-            if (slot[i].item == null && item.name != "Coin")
+            if (slot[i].name == item.name)
             {
-                Debug.Log(slot[i]);
-                slot[i].AddItem(item);
+                Debug.Log("동일한 아이템 습득");
                 AddWeight(item.kg);
-                Debug.Log("인벤토리 아이템 추가");
+                slot[i].additionItemCount();
                 return;
             }
+            if (slot[i].name == "" && item.name != "Coin")
+            {
+                slot[i].AddItem(item);
+                AddWeight(item.kg);
+                return;
+            }
+
         }
     }
+
+
+    public void UseItem()
+    { 
+        // 아이템 사용하면 카운터가 1개에서 사용하면 삭제 및 효과 발동 혹은 1이상일시 카운트 내리고 효과 적용
+    }
+
+   
 
     private void MaxWeightText(float maxKg)
     {

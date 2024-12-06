@@ -68,7 +68,7 @@ public class Inventory : MonoBehaviour
                 slot[i].additionItemCount();
                 return;
             }
-            if (slot[i].name == "" && item.name != "Coin")
+            else if (slot[i].name == "" && item.name != "Coin")
             {
                 slot[i].AddItem(item);
                 AddWeight(item.kg);

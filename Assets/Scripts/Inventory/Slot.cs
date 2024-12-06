@@ -26,6 +26,7 @@ public class Slot : MonoBehaviour
 
     [Header("æ∆¿Ã≈€ ∞πºˆ")]
     public TextMeshProUGUI slotItemCount;
+    public Button button;
 
     //public GameObject prefab;
 
@@ -35,11 +36,9 @@ public class Slot : MonoBehaviour
         countItem = 1;
         CountItemText();
         icon = transform.GetChild(0).GetComponent<Image>();
+        button = GetComponentInChildren<Button>();
         countImage.gameObject.SetActive(false);
-    }
-    private void Start()
-    {
-        
+        button.gameObject.SetActive(false);
     }
 
     public void CountItemText()
@@ -71,6 +70,7 @@ public class Slot : MonoBehaviour
         kg          = slotitem.kg;
         price       = slotitem.price;
         description = slotitem.description;
+        button.gameObject.SetActive(true);
         countImage.SetActive(true);
     }
 
@@ -85,7 +85,8 @@ public class Slot : MonoBehaviour
         kg          =  0;
         price       =  0;
         description = null;
-        countImage.SetActive(true);
+        button.gameObject.SetActive(false);
+        countImage.SetActive(false);
     }
 
     

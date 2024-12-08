@@ -42,12 +42,14 @@ public class Slot : MonoBehaviour
 
     private void Start()
     {
-        button.onClick.AddListener(ItemButtonClick);
+       // button.onClick.AddListener(ItemButtonClick(this)); 
     }
 
-    public void ItemButtonClick()
+    public void ItemButtonClick(Slot item)
     {
-        des.DescriptionActive();
+        // 클릭할떄 해당 아이템 이름 및 설명 가져오기
+        //drop에서 갯수가져가야지 
+        des.DescriptionActive(item);
     }
 
     public void CountItemText()
@@ -82,17 +84,22 @@ public class Slot : MonoBehaviour
         countImage.SetActive(true);
     }
 
-    public void DropItem()
+    public void DropItem(PrefabItem slotitem)
     {
-        icon.sprite = null;
-        itemtype    =  ItemType.stuff;
-        name        =  null;
-        damage      =  0;
-        attackspeed =  0;
-        def         =  0;
-        kg          =  0;
-        price       =  0;
-        description = null;
+        if (countItem > 1)
+        {
+            subtractingItemCount();
+            return;
+        }
+
+        slotitem.icon = null;
+        slotitem.name        =  "";
+        slotitem.damage      =  0;
+        slotitem.attackspeed =  0;
+        slotitem.def         =  0;
+        slotitem.kg          =  0;
+        slotitem.price       =  0;
+        slotitem.description = null;
         button.gameObject.SetActive(false);
         countImage.SetActive(false);
     }

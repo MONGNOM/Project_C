@@ -74,10 +74,14 @@ public class Inventory : MonoBehaviour
                 AddWeight(item.kg);
                 return;
             }
-
         }
     }
 
+
+    public void DropItem()
+    { 
+        // 아이템 버리기
+    }
 
     public void UseItem()
     { 

@@ -237,6 +237,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed1edea47c5bd7e4084e7443569a2feb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemName: {fileID: 396619902}
+  itemDescription: {fileID: 1911394931}
 --- !u!1 &42604817
 GameObject:
   m_ObjectHideFlags: 0
@@ -11668,9 +11670,21 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1911394931}
     - target: {fileID: 8533372587986567187, guid: f0a106ec4a00a374a9a0f3ba88dd1b06, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8533372587986567187, guid: f0a106ec4a00a374a9a0f3ba88dd1b06, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 6377743}
+    - target: {fileID: 8533372587986567187, guid: f0a106ec4a00a374a9a0f3ba88dd1b06, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 938558628}
+    - target: {fileID: 8533372587986567187, guid: f0a106ec4a00a374a9a0f3ba88dd1b06, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: Slot, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 9110614989571941373, guid: f0a106ec4a00a374a9a0f3ba88dd1b06, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

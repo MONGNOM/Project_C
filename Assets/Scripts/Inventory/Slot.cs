@@ -27,10 +27,8 @@ public class Slot : MonoBehaviour
     [Header("æ∆¿Ã≈€ ∞πºˆ")]
     public TextMeshProUGUI slotItemCount;
     public Button button;
+    public Description des;
 
-    //public GameObject prefab;
-
-    // Start is called before the first frame update
     private void Awake()
     {
         countItem = 1;
@@ -39,6 +37,17 @@ public class Slot : MonoBehaviour
         button = GetComponentInChildren<Button>();
         countImage.gameObject.SetActive(false);
         button.gameObject.SetActive(false);
+        des = FindAnyObjectByType<Description>();
+    }
+
+    private void Start()
+    {
+        button.onClick.AddListener(ItemButtonClick);
+    }
+
+    public void ItemButtonClick()
+    {
+        des.DescriptionActive();
     }
 
     public void CountItemText()
@@ -56,7 +65,6 @@ public class Slot : MonoBehaviour
         countItem -= 1;
         CountItemText();
     }
-
 
 
     public void AddItem(PrefabItem slotitem)

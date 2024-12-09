@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading;
 using TMPro;
 using Unity.VisualScripting;
@@ -28,6 +29,7 @@ public class Slot : MonoBehaviour
     public TextMeshProUGUI slotItemCount;
     public Button button;
     public Description des;
+    public Inventory inventory;
 
     private void Awake()
     {
@@ -38,18 +40,22 @@ public class Slot : MonoBehaviour
         countImage.gameObject.SetActive(false);
         button.gameObject.SetActive(false);
         des = FindAnyObjectByType<Description>();
+        inventory = FindAnyObjectByType<Inventory>();
     }
 
     private void Start()
     {
-       // button.onClick.AddListener(ItemButtonClick(this)); 
+        button.onClick.AddListener(ItemButtonClick);
     }
 
-    public void ItemButtonClick(Slot item)
+    public void ItemButtonClick()
     {
         // 클릭할떄 해당 아이템 이름 및 설명 가져오기
         //drop에서 갯수가져가야지 
-        des.DescriptionActive(item);
+        //직접 붙여넣어서 변경 할 필요있어보임
+        des.DescriptionActive(this);
+        des.SetCurrentItem(this);
+        //drop아이템을여기서 줘야하나
     }
 
     public void CountItemText()
@@ -66,6 +72,26 @@ public class Slot : MonoBehaviour
     {
         countItem -= 1;
         CountItemText();
+    }
+   
+
+    public void UseItem()
+    {
+        if (itemtype == ItemType.stuff)
+            return;
+
+        if (countItem > 1)
+        {
+            subtractingItemCount();
+            ItemUse();
+            return;
+        }
+
+        //아이템사용함수 추가
+        ItemUse();
+        DropItem();
+        // 아이템 사용하면 카운터가 1개에서 사용하면 삭제 및 효과 발동 혹은 1이상일시 카운트 내리고 효과 적용
+        // 아이템의 정보 가져오기
     }
 
 
@@ -84,7 +110,7 @@ public class Slot : MonoBehaviour
         countImage.SetActive(true);
     }
 
-    public void DropItem(PrefabItem slotitem)
+    public void DropItem()
     {
         if (countItem > 1)
         {
@@ -92,16 +118,34 @@ public class Slot : MonoBehaviour
             return;
         }
 
-        slotitem.icon = null;
-        slotitem.name        =  "";
-        slotitem.damage      =  0;
-        slotitem.attackspeed =  0;
-        slotitem.def         =  0;
-        slotitem.kg          =  0;
-        slotitem.price       =  0;
-        slotitem.description = null;
+        icon.sprite = null;
+        name        =  "";
+        damage      =  0;
+        attackspeed =  0;
+        def         =  0;
+        kg          =  0;
+        price       =  0;
+        description = null;
         button.gameObject.SetActive(false);
         countImage.SetActive(false);
+    }
+
+    public void ItemUse()
+    {
+        switch (itemtype)
+        {
+            case ItemType.Weapon:
+
+                break;
+            case ItemType.use:
+
+                break;
+            case ItemType.Armor:
+
+                break;
+            default:
+                break;
+        }
     }
 
     

@@ -39,8 +39,10 @@ public class Inventory : MonoBehaviour
     private void WeightChange(float weight)
     {
         UIManager.instance.playerKgImage.fillAmount = weight;
-        Debug.Log("kg증가");
+        Debug.Log("kg변화");
     }
+
+
 
 
     public void InventoryActive()
@@ -54,7 +56,6 @@ public class Inventory : MonoBehaviour
         ani.SetTrigger("Hide");
         Debug.Log("Hide");
     }
-
 
 
     public void InventoryAddItem(PrefabItem item)
@@ -78,17 +79,9 @@ public class Inventory : MonoBehaviour
     }
 
 
-    public void DropItem()
-    { 
-        // 아이템 버리기
-    }
 
-    public void UseItem()
-    { 
-        // 아이템 사용하면 카운터가 1개에서 사용하면 삭제 및 효과 발동 혹은 1이상일시 카운트 내리고 효과 적용
-    }
 
-   
+
 
     private void MaxWeightText(float maxKg)
     {
@@ -105,10 +98,16 @@ public class Inventory : MonoBehaviour
         // 아이템 습득시
     }
 
-    public void reduceWeight(float reduceweight)
+    public void DropWeight(float reduceweight)
     {
         CurKg -= reduceweight;
-        // 물건을 버리거나 상점에 판매시
+
+        double epsilon = 0.0001;
+
+        if (Math.Abs(curKg) < epsilon)
+        {
+            CurKg = 0;
+        }
     }
 
 }

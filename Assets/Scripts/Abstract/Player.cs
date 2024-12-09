@@ -210,6 +210,22 @@ public abstract class Player : MonoBehaviour
         }
     }
 
+    public void Heal(float hp)
+    {
+        CurHp += hp;
+    }
+
+    public void AttackSpeedUp(float speed)
+    {
+        attackSpeed += speed;
+    }
+
+    public void DamageUp(float damageup)
+    {
+        damage += damageup;
+    }
+
+
     private void OnDrawGizmos()
     {
         Gizmos.color = UnityEngine.Color.red;

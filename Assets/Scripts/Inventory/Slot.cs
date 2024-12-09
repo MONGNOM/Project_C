@@ -10,14 +10,20 @@ using UnityEngine.UI;
 public class Slot : MonoBehaviour
 {
     public PrefabItem item;
-    public enum ItemType { Weapon, Armor, use, stuff }
+    public enum ItemType { Helmet, Weapon, Armor, Shoes, use, stuff }
     public ItemType itemtype;
+    public enum UseType { None, Potion, Scroll }
+    public UseType usetype;
+    public enum PotionType { None, Heal, AtkSpeedUp, AttackUp }
+    public PotionType potiontype;
+
     public Image icon;
     public new string name;
     public float damage;
     public float attackspeed;
     public float def;
     public float kg;
+    public float heal;
     public int price;
     public string description;
 
@@ -30,6 +36,7 @@ public class Slot : MonoBehaviour
     public Button button;
     public Description des;
     public Inventory inventory;
+    private Player player;
 
     private void Awake()
     {
@@ -41,6 +48,7 @@ public class Slot : MonoBehaviour
         button.gameObject.SetActive(false);
         des = FindAnyObjectByType<Description>();
         inventory = FindAnyObjectByType<Inventory>();
+        player = FindAnyObjectByType<Player>();
     }
 
     private void Start()
@@ -99,9 +107,12 @@ public class Slot : MonoBehaviour
     {
         icon.sprite = slotitem.icon;
         itemtype    = (ItemType)slotitem.itemtype;
+        usetype     = (UseType)slotitem.usetype;
+        potiontype  = (PotionType)slotitem.potiontype;
         name        = slotitem.name;
         damage      = slotitem.damage;
         attackspeed = slotitem.attackspeed;
+        heal        = slotitem.heal;
         def         = slotitem.def;
         kg          = slotitem.kg;
         price       = slotitem.price;
@@ -135,18 +146,78 @@ public class Slot : MonoBehaviour
         switch (itemtype)
         {
             case ItemType.Weapon:
-
+                InvenWeapon();
                 break;
             case ItemType.use:
-
+                InvenUseItem();
                 break;
             case ItemType.Armor:
-
+                InvenArmor();
                 break;
             default:
                 break;
         }
     }
 
-    
+    public void InvenWeapon()
+    {
+        Debug.Log("¹«±â Âø¿ë");
+        //½½·Ô¿¡ ¹æ¾î±¸Âø¿ë ¹× ¿Ê ÀÔÈ÷±â?
+        // ½ºÅÝ Áõ°¡
+    }
+
+    public void InvenArmor()
+    {
+        Debug.Log("¹æ¾î±¸ Âø¿ë");
+        //½½·Ô¿¡ ¹æ¾î±¸Âø¿ë ¹× ¿Ê ÀÔÈ÷±â?
+        // ½ºÅÝ Áõ°¡
+    }
+
+    public void InvenUseItem()
+    {
+        switch (usetype)
+        {
+            case UseType.Potion:
+                UsePoion();
+                break;
+            case UseType.Scroll:
+                Debug.Log("±ÍÈ¯!");
+                break;
+        }
+    }
+
+
+    public void UsePoion()
+    {
+        switch (potiontype)
+        {
+            case PotionType.Heal:
+                UseHealPotion();
+                break;
+            case PotionType.AttackUp:
+                DamageUp();
+                break;
+            case PotionType.AtkSpeedUp:
+                AttackSpeedUp();
+                break;
+
+        }
+    }
+
+    public void UseHealPotion()
+    {
+        player.Heal(heal);
+    }
+
+    public void DamageUp()
+    {
+        player.DamageUp(damage);
+    }
+
+    public void AttackSpeedUp()
+    {
+        player.AttackSpeedUp(attackspeed);
+    }
+
+
 }

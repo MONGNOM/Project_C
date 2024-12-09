@@ -10,8 +10,6 @@ public class Description : MonoBehaviour
     Animator animator;
     public TextMeshProUGUI itemName;
     public TextMeshProUGUI itemDescription;
-
-    public Button dropButton;
     public Slot slotitem;
     public Inventory inventory;
 
@@ -45,17 +43,15 @@ public class Description : MonoBehaviour
 
         inventory.DropWeight(slotitem.kg);
         slotitem.DropItem();
-        Debug.Log(inventory.CurKg);
     }
 
     public void UseButton()
     {
-        if (inventory.CurKg <= 0 || Slot.ItemType.use != slotitem.itemtype)
+        if (inventory.CurKg <= 0 || Slot.ItemType.stuff == slotitem.itemtype)
             return;
 
         inventory.DropWeight(slotitem.kg);
         slotitem.UseItem();
-        Debug.Log(inventory.CurKg);
     }
 
 

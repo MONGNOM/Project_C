@@ -19,6 +19,6 @@ MonoBehaviour:
   attackspeed: 0
   def: 0
   kg: 0
-  price: 0
+  price: 74
   description: "\uAC8C\uC784 \uD654\uD3D0"
   prefab: {fileID: 4803581465490092452, guid: be8a6a9e35f9d07448ed26c89bcdaa41, type: 3}

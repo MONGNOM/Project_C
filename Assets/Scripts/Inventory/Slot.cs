@@ -181,9 +181,14 @@ public class Slot : MonoBehaviour
                 UsePoion();
                 break;
             case UseType.Scroll:
-                Debug.Log("±Õ»Ø!");
+                BackHome();
                 break;
         }
+    }
+
+    public void BackHome()
+    { 
+        Debug.Log("±Õ»Ø!");
     }
 
 

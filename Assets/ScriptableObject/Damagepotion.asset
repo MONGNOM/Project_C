@@ -20,7 +20,7 @@ MonoBehaviour:
   damage: 50
   attackspeed: 0
   def: 0
-  kg: 0.1
+  kg: 0.001
   heal: 0
   price: 500
   description: Damage Up !

@@ -241,6 +241,11 @@ MonoBehaviour:
   itemDescription: {fileID: 1911394931}
   slotitem: {fileID: 0}
   inventory: {fileID: 0}
+  helmet: {fileID: 1406649273}
+  armor: {fileID: 1948958327}
+  shoes: {fileID: 1445047664}
+  weapon: {fileID: 1460480313}
+  shield: {fileID: 747731310}
 --- !u!1 &42604817
 GameObject:
   m_ObjectHideFlags: 0
@@ -1771,7 +1776,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 410444966}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1831672959}
+        m_TargetAssemblyTypeName: Inventory, Assembly-CSharp
+        m_MethodName: UnEquip
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1948958327}
+          m_ObjectArgumentAssemblyTypeName: PrefabItem, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 410444963}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &410444966
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5977,6 +6006,7 @@ GameObject:
   - component: {fileID: 747731307}
   - component: {fileID: 747731309}
   - component: {fileID: 747731308}
+  - component: {fileID: 747731310}
   m_Layer: 5
   m_Name: Shield slot
   m_TagString: Untagged
@@ -5991,17 +6021,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 747731306}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1586450436}
-  m_Father: {fileID: 1831672956}
+  m_Father: {fileID: 1201280258}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -100, y: -600}
+  m_AnchoredPosition: {x: 569.99994, y: 948.1172}
   m_SizeDelta: {x: 300, y: 300}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &747731308
@@ -6042,6 +6072,31 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 747731306}
   m_CullTransparentMesh: 1
+--- !u!114 &747731310
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 747731306}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d81c6fa6ff350d41b846ed29c93a051, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 0}
+  itemtype: 0
+  usetype: 0
+  potiontype: 0
+  icon: {fileID: 0}
+  name: 
+  damage: 0
+  attackspeed: 0
+  def: 0
+  kg: 0
+  heal: 0
+  price: 0
+  description: 
 --- !u!1 &749676265
 GameObject:
   m_ObjectHideFlags: 0
@@ -6888,7 +6943,6 @@ GameObject:
   - component: {fileID: 1021157610}
   - component: {fileID: 1021157609}
   - component: {fileID: 1021157608}
-  - component: {fileID: 1021157611}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -6964,8 +7018,20 @@ MonoBehaviour:
         m_MethodName: UnEquip
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 1021157611}
+          m_ObjectArgument: {fileID: 1406649273}
           m_ObjectArgumentAssemblyTypeName: PrefabItem, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1021157606}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -7009,32 +7075,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1021157606}
   m_CullTransparentMesh: 1
---- !u!114 &1021157611
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1021157606}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0d81c6fa6ff350d41b846ed29c93a051, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spriteRenderer: {fileID: 0}
-  itemtype: 0
-  usetype: 0
-  potiontype: 0
-  icon: {fileID: 0}
-  name: 
-  damage: 0
-  attackspeed: 0
-  def: 0
-  kg: 0
-  heal: 0
-  price: 0
-  description: 
-  monster: {fileID: 0}
 --- !u!1001 &1036363216
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7683,7 +7723,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1170140290}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1831672959}
+        m_TargetAssemblyTypeName: Inventory, Assembly-CSharp
+        m_MethodName: UnEquip
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1460480313}
+          m_ObjectArgumentAssemblyTypeName: PrefabItem, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1170140287}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1170140290
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7814,6 +7878,47 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1198720632}
   m_CullTransparentMesh: 1
+--- !u!1 &1201280256
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1201280258}
+  m_Layer: 5
+  m_Name: Equip
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1201280258
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1201280256}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1406649270}
+  - {fileID: 1948958324}
+  - {fileID: 1445047661}
+  - {fileID: 1460480310}
+  - {fileID: 747731307}
+  - {fileID: 1902803068}
+  m_Father: {fileID: 1831672956}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &1279761170
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8850,6 +8955,7 @@ GameObject:
   - component: {fileID: 1406649270}
   - component: {fileID: 1406649272}
   - component: {fileID: 1406649271}
+  - component: {fileID: 1406649273}
   m_Layer: 5
   m_Name: Armor_Head slot
   m_TagString: Untagged
@@ -8864,17 +8970,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1406649269}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1021157607}
-  m_Father: {fileID: 1831672956}
+  m_Father: {fileID: 1201280258}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -100}
+  m_AnchoredPosition: {x: 0, y: 1448.1179}
   m_SizeDelta: {x: 300, y: 300}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1406649271
@@ -8915,6 +9021,31 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1406649269}
   m_CullTransparentMesh: 1
+--- !u!114 &1406649273
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1406649269}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d81c6fa6ff350d41b846ed29c93a051, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 0}
+  itemtype: 0
+  usetype: 0
+  potiontype: 0
+  icon: {fileID: 0}
+  name: 
+  damage: 0
+  attackspeed: 0
+  def: 0
+  kg: 0
+  heal: 0
+  price: 0
+  description: 
 --- !u!1 &1407587718
 GameObject:
   m_ObjectHideFlags: 0
@@ -9001,6 +9132,7 @@ GameObject:
   - component: {fileID: 1445047661}
   - component: {fileID: 1445047663}
   - component: {fileID: 1445047662}
+  - component: {fileID: 1445047664}
   m_Layer: 5
   m_Name: Armor_Leg slot
   m_TagString: Untagged
@@ -9015,17 +9147,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1445047660}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1578622690}
-  m_Father: {fileID: 1831672956}
+  m_Father: {fileID: 1201280258}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -250, y: 300}
+  m_AnchoredPosition: {x: 419.99994, y: 300}
   m_SizeDelta: {x: 300, y: 300}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!114 &1445047662
@@ -9066,6 +9198,31 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1445047660}
   m_CullTransparentMesh: 1
+--- !u!114 &1445047664
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1445047660}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d81c6fa6ff350d41b846ed29c93a051, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 0}
+  itemtype: 0
+  usetype: 0
+  potiontype: 0
+  icon: {fileID: 0}
+  name: 
+  damage: 0
+  attackspeed: 0
+  def: 0
+  kg: 0
+  heal: 0
+  price: 0
+  description: 
 --- !u!1 &1460480309
 GameObject:
   m_ObjectHideFlags: 0
@@ -9077,6 +9234,7 @@ GameObject:
   - component: {fileID: 1460480310}
   - component: {fileID: 1460480312}
   - component: {fileID: 1460480311}
+  - component: {fileID: 1460480313}
   m_Layer: 5
   m_Name: Weapon slot
   m_TagString: Untagged
@@ -9091,17 +9249,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1460480309}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1170140288}
-  m_Father: {fileID: 1831672956}
+  m_Father: {fileID: 1201280258}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 100, y: -600}
+  m_AnchoredPosition: {x: -570.00006, y: 948.1172}
   m_SizeDelta: {x: 300, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1460480311
@@ -9142,6 +9300,31 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1460480309}
   m_CullTransparentMesh: 1
+--- !u!114 &1460480313
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1460480309}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d81c6fa6ff350d41b846ed29c93a051, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 0}
+  itemtype: 0
+  usetype: 0
+  potiontype: 0
+  icon: {fileID: 0}
+  name: 
+  damage: 0
+  attackspeed: 0
+  def: 0
+  kg: 0
+  heal: 0
+  price: 0
+  description: 
 --- !u!1 &1463824197
 GameObject:
   m_ObjectHideFlags: 0
@@ -10412,7 +10595,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1578622692}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1831672959}
+        m_TargetAssemblyTypeName: Inventory, Assembly-CSharp
+        m_MethodName: UnEquip
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1445047664}
+          m_ObjectArgumentAssemblyTypeName: PrefabItem, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1578622689}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1578622692
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10532,7 +10739,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1586450438}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1831672959}
+        m_TargetAssemblyTypeName: Inventory, Assembly-CSharp
+        m_MethodName: UnEquip
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 747731310}
+          m_ObjectArgumentAssemblyTypeName: PrefabItem, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1170140287}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1586450438
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11539,12 +11770,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1406649270}
-  - {fileID: 1948958324}
-  - {fileID: 1445047661}
-  - {fileID: 1460480310}
-  - {fileID: 747731307}
-  - {fileID: 1902803068}
+  - {fileID: 1201280258}
   - {fileID: 779479820}
   - {fileID: 546135846}
   - {fileID: 591979824}
@@ -11845,16 +12071,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1902803067}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1831672956}
+  m_Father: {fileID: 1201280258}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -500}
+  m_AnchoredPosition: {x: 0, y: 1048.1176}
   m_SizeDelta: {x: 600, y: 600}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1902803069
@@ -12042,6 +12268,7 @@ GameObject:
   - component: {fileID: 1948958324}
   - component: {fileID: 1948958326}
   - component: {fileID: 1948958325}
+  - component: {fileID: 1948958327}
   m_Layer: 5
   m_Name: Armor_Chest slot
   m_TagString: Untagged
@@ -12056,17 +12283,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1948958323}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 410444964}
-  m_Father: {fileID: 1831672956}
+  m_Father: {fileID: 1201280258}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 250, y: 300}
+  m_AnchoredPosition: {x: -419.99994, y: 300}
   m_SizeDelta: {x: 300, y: 300}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &1948958325
@@ -12107,6 +12334,31 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1948958323}
   m_CullTransparentMesh: 1
+--- !u!114 &1948958327
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1948958323}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d81c6fa6ff350d41b846ed29c93a051, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 0}
+  itemtype: 0
+  usetype: 0
+  potiontype: 0
+  icon: {fileID: 0}
+  name: 
+  damage: 0
+  attackspeed: 0
+  def: 0
+  kg: 0
+  heal: 0
+  price: 0
+  description: 
 --- !u!1 &1953139538
 GameObject:
   m_ObjectHideFlags: 0
@@ -12795,10 +13047,6 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 963194227}
-    - target: {fileID: 9040187826548258841, guid: d95dd68f59b6f8043a997aa216595413, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

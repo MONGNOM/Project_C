@@ -19,9 +19,9 @@ MonoBehaviour:
   name: Armor
   damage: 0
   attackspeed: 0
-  def: 0
+  def: 10
   kg: 0.1
-  heal: 100
-  price: 100
+  heal: 0
+  price: 200
   description: potion
   prefab: {fileID: 4803581465490092452, guid: be8a6a9e35f9d07448ed26c89bcdaa41, type: 3}

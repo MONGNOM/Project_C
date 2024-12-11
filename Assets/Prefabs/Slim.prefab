@@ -311,9 +311,15 @@ MonoBehaviour:
   attackEnemyRange: {x: 1, y: 1}
   dropList:
   - {fileID: 11400000, guid: 2672265fd8e97bf41a0dc7ad3e40bd24, type: 2}
+  - {fileID: 11400000, guid: b8ec14a4401a82b46b122de08266c201, type: 2}
+  - {fileID: 11400000, guid: 1036f7fb27862014c8ee92d3099e7285, type: 2}
+  - {fileID: 11400000, guid: 4e649853af5b8a140be768468c3ebb8e, type: 2}
+  - {fileID: 11400000, guid: 82bf3f471a790074b9cf6b2a69a26e13, type: 2}
   - {fileID: 11400000, guid: 56b786dddc092f945aa7d1ca580fd5a2, type: 2}
-  - {fileID: 11400000, guid: fc2e6e73dba62c948b2669ffbaaf8a84, type: 2}
+  - {fileID: 11400000, guid: fe3a39841e957c04fa879869a2661193, type: 2}
+  - {fileID: 11400000, guid: 256a31935e85c9543bbd1f6d9512afec, type: 2}
   - {fileID: 11400000, guid: 6ef1342e4e4ee4747b4faf295ffc2663, type: 2}
+  - {fileID: 11400000, guid: fc2e6e73dba62c948b2669ffbaaf8a84, type: 2}
   randValue: 0
   hpimage: {fileID: 3542541245215742570}
 --- !u!212 &9171736059386580449

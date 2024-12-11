@@ -119,6 +119,27 @@ public abstract class Player : MonoBehaviour
         
     }
 
+    public IEnumerator AttackSpeedup(float speed)
+    {
+        float orign = attackSpeed;
+        attackSpeed += speed;
+        Debug.Log(attackSpeed);
+        yield return new WaitForSeconds(30);
+        attackSpeed = orign;
+        Debug.Log(attackSpeed);
+
+    }
+
+    public IEnumerator AttackDamageUp(float power)
+    {
+        float orign = damage;
+        damage += power;
+        Debug.Log(damage);
+        yield return new WaitForSeconds(30);
+        damage = orign;
+        Debug.Log(damage);
+    }
+
     private void HpChange(float hp)
     {
         UIManager.instance.playerHpImage.fillAmount = hp;
@@ -216,6 +237,11 @@ public abstract class Player : MonoBehaviour
         }
     }
 
+    public void originalDamage(float power)
+    {
+
+    }
+
     public void Defence(float defence)
     {
         def += defence;
@@ -236,7 +262,15 @@ public abstract class Player : MonoBehaviour
         damage += damageup;
     }
 
-   
+    public void UnEquipWeapon(float damageup)
+    {
+        damage -= damageup;
+    }
+
+    public void UnEquipArmor(float defence)
+    {
+        def -= defence;
+    }
 
     public void EquipHelmet()
     { 

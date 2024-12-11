@@ -19,7 +19,7 @@ MonoBehaviour:
   name: Shoes
   damage: 0
   attackspeed: 0
-  def: 0
+  def: 10
   kg: 0.1
   heal: 100
   price: 100

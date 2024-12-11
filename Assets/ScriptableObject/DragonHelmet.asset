@@ -10,18 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3fe7c83d40fdc874884990285a94d518, type: 3}
-  m_Name: Helmet
+  m_Name: DragonHelmet
   m_EditorClassIdentifier: 
   itemtype: 0
   usetype: 0
   potiontype: 0
-  icon: {fileID: 21300000, guid: 86920d56f84363c4ca125b931ac67a78, type: 3}
-  name: Helmet
+  icon: {fileID: 21300000, guid: aa689385d4aeb284b82aba0ac22e4996, type: 3}
+  name: DragonHelmet
   damage: 0
   attackspeed: 0
-  def: 10
+  def: 100
   kg: 0.1
-  heal: 100
-  price: 100
-  description: potion
+  heal: 0
+  price: 10000
+  description: DragonHelmet
   prefab: {fileID: 4803581465490092452, guid: be8a6a9e35f9d07448ed26c89bcdaa41, type: 3}

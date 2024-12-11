@@ -38,6 +38,8 @@ public class Slot : MonoBehaviour
     public Inventory inventory;
     private Player player;
 
+   
+
     private void Awake()
     {
         countItem = 1;
@@ -187,6 +189,8 @@ public class Slot : MonoBehaviour
 
     public void InvenWeapon()
     {
+        //item.InventoryItemSet(this);
+        inventory.weapon.gameObject.SetActive(true);
         inventory.weapon.image.sprite = icon.sprite;
         player.DamageUp(damage);
         player.EquipWeapon();
@@ -195,6 +199,7 @@ public class Slot : MonoBehaviour
 
     public void InvenHelmet()
     {
+        inventory.helmet.gameObject.SetActive(true);
         inventory.helmet.image.sprite = icon.sprite;
         player.Defence(def);
         player.EquipHelmet();
@@ -203,6 +208,7 @@ public class Slot : MonoBehaviour
 
     public void InvenArmor()
     {
+        inventory.armor.gameObject.SetActive(true);
         inventory.armor.image.sprite = icon.sprite;
         player.Defence(def);
         player.EquipArmor();
@@ -211,6 +217,7 @@ public class Slot : MonoBehaviour
 
     public void InvenShoes()
     {
+        inventory.shoes.gameObject.SetActive(true);
         inventory.shoes.image.sprite = icon.sprite;
         player.Defence(def);
         player.EquipShoes();
@@ -242,13 +249,15 @@ public class Slot : MonoBehaviour
 
     public void DamageUp()
     {
-        player.DamageUp(damage);
+        StartCoroutine(player.AttackDamageUp(damage));
     }
 
     public void AttackSpeedUp()
     {
-        player.AttackSpeedUp(attackspeed);
+        StartCoroutine(player.AttackSpeedup(attackspeed));
     }
+
+    
 
 
 }

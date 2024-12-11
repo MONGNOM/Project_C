@@ -23,18 +23,16 @@ public class PrefabItem : MonoBehaviour
     public float heal;
     public int price;
     public string description;
-    public Monster monster;
     private Inventory inventory;
 
 
     private void Awake()
     {
-        monster = FindAnyObjectByType<Monster>();
         inventory = FindAnyObjectByType<Inventory>();
     }
 
    
-    void InventoryItemSet(Slot slot)
+    public void InventoryItemSet(Slot slot)
     {
         icon    = slot.icon.sprite;
         itemtype = (ItemType)slot.itemtype;

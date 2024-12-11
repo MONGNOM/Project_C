@@ -17,7 +17,7 @@ MonoBehaviour:
   potiontype: 0
   icon: {fileID: 21300000, guid: 641a6cab2e706de43b7edd4b84f1c94e, type: 3}
   name: Weapon
-  damage: 0
+  damage: 50
   attackspeed: 0
   def: 0
   kg: 0.1

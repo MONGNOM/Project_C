@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography.X509Certificates;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -18,6 +19,7 @@ public class Inventory : MonoBehaviour
     public Button armor;
     public Button shoes;
     public Image unequip;
+    Player player;
 
     public float MaxKg { get { return maxKg; } private set { maxKg = value; inventoryMaxweight?.Invoke(maxKg); } }
     public Action<float> inventoryMaxweight;
@@ -35,6 +37,7 @@ public class Inventory : MonoBehaviour
         MaxWeightText(MaxKg);
         CurWeighttext(CurKg);
         WeightChange(CurKg);
+        player = FindAnyObjectByType<Player>();
     }
     private void Start()
     {
@@ -53,9 +56,50 @@ public class Inventory : MonoBehaviour
 
     public void UnEquip(PrefabItem item)
     {
-        InventoryAddItem(item);
+        Debug.Log("¿Â∫Ò «ÿ¡¶");
+        if (PrefabItem.ItemType.Weapon != item.itemtype)
+        {
+            player.UnEquipArmor(item.def);
+        }
+        else
+        { 
+            player.UnEquipWeapon(item.damage);
+        }
+
+        AddUnEquip(item);
+        ClearEquipItem(item);
+        // Ω∫≈»∂≥±∏±‚
     }
 
+
+    private void AddUnEquip(PrefabItem item)
+    {
+        for (int i = 0; i < slot.Length; i++)
+        {
+            if (slot[i].name == item.name)
+            {
+                slot[i].additionItemCount();
+                return;
+            }
+            else if (slot[i].name == "")
+            {
+                slot[i].AddItem(item);
+                return;
+            }
+        }
+    }
+
+    private void ClearEquipItem(PrefabItem item)
+    {
+        item.icon = null;
+        item.name = "";
+        item.damage = 0;
+        item.attackspeed = 0;
+        item.def = 0;
+        item.kg = 0;
+        item.price = 0;
+        item.description = null;
+    }
 
   
 

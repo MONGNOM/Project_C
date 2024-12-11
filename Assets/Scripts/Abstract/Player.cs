@@ -17,6 +17,13 @@ public abstract class Player : MonoBehaviour
 {
     public float CurHp { get {return curHp; } private set { curHp = value; Hp?.Invoke(curHp); } }
     public event Action<float> Hp;
+    public float Damage { get { return damage; } private set { damage = value; damageAction?.Invoke(damage); } }
+    public event Action<float> damageAction;
+    public float Def { get { return def; } private set { def = value; defAction?.Invoke(def); } }
+    public event Action<float> defAction;
+    public float AttackSpeed { get { return attackSpeed; } private set { attackSpeed = value; attackSpeedAction?.Invoke(attackSpeed); } }
+    public event Action<float> attackSpeedAction;
+
 
     [Header("플레이어 스탯")]
     [SerializeField] protected float maxHp;
@@ -62,6 +69,9 @@ public abstract class Player : MonoBehaviour
         attackSpeed = 0.5f;
         curHp = maxHp;
         Hp += HpChange;
+        damageAction += DamageChange;
+        attackSpeedAction += AttackSpeedChange;
+        defAction += DefenceChange;
         animator.SetFloat("AttackSpeed", attackSpeed);
     }
 
@@ -115,35 +125,50 @@ public abstract class Player : MonoBehaviour
     private void Update()
     {
         attackcool += Time.deltaTime;
-        
-        
     }
 
     public IEnumerator AttackSpeedup(float speed)
     {
-        float orign = attackSpeed;
-        attackSpeed += speed;
-        Debug.Log(attackSpeed);
+        float orign = AttackSpeed;
+        AttackSpeed += speed;
+        Debug.Log(AttackSpeed);
         yield return new WaitForSeconds(30);
-        attackSpeed = orign;
-        Debug.Log(attackSpeed);
+        AttackSpeed = orign;
+        Debug.Log(AttackSpeed);
 
     }
 
     public IEnumerator AttackDamageUp(float power)
     {
-        float orign = damage;
-        damage += power;
-        Debug.Log(damage);
+        float orign = Damage;
+        Damage += power;
+        Debug.Log(Damage);
         yield return new WaitForSeconds(30);
-        damage = orign;
-        Debug.Log(damage);
+        Damage = orign;
+        Debug.Log(Damage);
     }
 
     private void HpChange(float hp)
     {
         UIManager.instance.playerHpImage.fillAmount = hp;
-        Debug.Log("hp감소");
+        Debug.Log("hp변화");
+    }
+
+    private void DamageChange(float damage)
+    {
+        UIManager.instance.damage.text = damage.ToString();
+        
+    }
+
+    private void DefenceChange(float def)
+    {
+
+        UIManager.instance.def.text = def.ToString();
+    }
+
+    private void AttackSpeedChange(float speed)
+    {
+        UIManager.instance.attackSpeed.text = speed.ToString();
     }
 
 
@@ -237,14 +262,9 @@ public abstract class Player : MonoBehaviour
         }
     }
 
-    public void originalDamage(float power)
-    {
-
-    }
-
     public void Defence(float defence)
     {
-        def += defence;
+        Def += defence;
     }
 
     public void Heal(float hp)
@@ -254,22 +274,22 @@ public abstract class Player : MonoBehaviour
 
     public void AttackSpeedUp(float speed)
     {
-        attackSpeed += speed;
+        AttackSpeed += speed;
     }
 
     public void DamageUp(float damageup)
     {
-        damage += damageup;
+        Damage += damageup;
     }
 
     public void UnEquipWeapon(float damageup)
     {
-        damage -= damageup;
+        Damage -= damageup;
     }
 
     public void UnEquipArmor(float defence)
     {
-        def -= defence;
+        Def -= defence;
     }
 
     public void EquipHelmet()

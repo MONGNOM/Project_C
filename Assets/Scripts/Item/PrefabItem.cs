@@ -29,31 +29,43 @@ public class PrefabItem : MonoBehaviour
 
     private void Awake()
     {
-        spriteRenderer = GetComponent<SpriteRenderer>();
         monster = FindAnyObjectByType<Monster>();
         inventory = FindAnyObjectByType<Inventory>();
     }
 
-    void Start()
+   
+    void InventoryItemSet(Slot slot)
     {
-        ItemSet(monster);
+        icon    = slot.icon.sprite;
+        itemtype = (ItemType)slot.itemtype;
+        usetype = (UseType)slot.usetype;
+        potiontype = (PotionType)slot.potiontype;
+        name = slot.name;
+        damage = slot.damage;
+        attackspeed = slot.attackspeed;
+        def = slot.def;
+        kg = slot.kg;
+        heal = slot.heal;
+        price = slot.price;
+        description = slot.description;
     }
 
-    void ItemSet(Monster monster)
+    public void ItemSet(Monster monster, int value)
     {
-        spriteRenderer.sprite = monster.dropList[monster.randValue].icon;
-        icon                  = monster.dropList[monster.randValue].icon;
-        itemtype              = (ItemType)monster.dropList[monster.randValue].itemtype;
-        usetype               = (UseType)monster.dropList[monster.randValue].usetype;
-        potiontype            = (PotionType)monster.dropList[monster.randValue].potiontype;
-        name                  = monster.dropList[monster.randValue].name;
-        damage                = monster.dropList[monster.randValue].damage;
-        attackspeed           = monster.dropList[monster.randValue].attackspeed;
-        def                   = monster.dropList[monster.randValue].def;
-        kg                    = monster.dropList[monster.randValue].kg;
-        heal                  = monster.dropList[monster.randValue].heal;
-        price                 = monster.dropList[monster.randValue].price;
-        description           = monster.dropList[monster.randValue].description;
+        spriteRenderer.sprite = monster.dropList[value].icon;
+        icon                  = monster.dropList[value].icon;
+        itemtype              = (ItemType)monster.dropList[value].itemtype;
+        usetype               = (UseType)monster.dropList[value].usetype;
+        potiontype            = (PotionType)monster.dropList[value].potiontype;
+        name                  = monster.dropList[value].name;
+        damage                = monster.dropList[value].damage;
+        attackspeed           = monster.dropList[value].attackspeed;
+        def                   = monster.dropList[value].def;
+        kg                    = monster.dropList[value].kg;
+        heal                  = monster.dropList[value].heal;
+        price                 = monster.dropList[value].price;
+        description           = monster.dropList[value].description;
+        Debug.Log("아이템 완성");
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -65,6 +77,6 @@ public class PrefabItem : MonoBehaviour
 
             Destroy(gameObject, 0.1f);
         }
-        
     }
+
 }

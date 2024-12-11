@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography.X509Certificates;
 using UnityEngine;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(Animator))]
 public class Inventory : MonoBehaviour
@@ -11,6 +12,12 @@ public class Inventory : MonoBehaviour
     public int countItem;
     private float maxKg;
     private float curKg;
+
+    public Button helmet;
+    public Button weapon;
+    public Button armor;
+    public Button shoes;
+    public Image unequip;
 
     public float MaxKg { get { return maxKg; } private set { maxKg = value; inventoryMaxweight?.Invoke(maxKg); } }
     public Action<float> inventoryMaxweight;
@@ -44,6 +51,13 @@ public class Inventory : MonoBehaviour
 
 
 
+    public void UnEquip(PrefabItem item)
+    {
+        InventoryAddItem(item);
+    }
+
+
+  
 
     public void InventoryActive()
     {
@@ -77,10 +91,6 @@ public class Inventory : MonoBehaviour
             }
         }
     }
-
-
-
-
 
 
     private void MaxWeightText(float maxKg)

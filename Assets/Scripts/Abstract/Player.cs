@@ -46,6 +46,12 @@ public abstract class Player : MonoBehaviour
     private Animator animator;
     private float attackcool;
 
+    [SerializeField] protected GameObject helmet;
+    [SerializeField] protected GameObject weapon;
+    [SerializeField] protected GameObject shoes;
+    [SerializeField] protected GameObject armor;
+
+
     private void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
@@ -210,6 +216,11 @@ public abstract class Player : MonoBehaviour
         }
     }
 
+    public void Defence(float defence)
+    {
+        def += defence;
+    }
+
     public void Heal(float hp)
     {
         CurHp += hp;
@@ -225,6 +236,25 @@ public abstract class Player : MonoBehaviour
         damage += damageup;
     }
 
+   
+
+    public void EquipHelmet()
+    { 
+        helmet.SetActive(true);
+    }
+
+    public void EquipWeapon()
+    {
+        weapon.SetActive(true);
+    }
+    public void EquipShoes()
+    {
+        shoes.SetActive(true);
+    }
+    public void EquipArmor()
+    {
+        armor.SetActive(true);
+    }
 
     private void OnDrawGizmos()
     {

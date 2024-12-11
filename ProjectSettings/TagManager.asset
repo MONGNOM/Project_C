@@ -57,6 +57,9 @@ TagManager:
   - name: Player
     uniqueID: 813291057
     locked: 0
+  - name: equipment
+    uniqueID: 1241064117
+    locked: 0
   - name: ForeGround
     uniqueID: 4247202573
     locked: 0

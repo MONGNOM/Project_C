@@ -147,13 +147,15 @@ public abstract class Monster : MonoBehaviour
 
     protected virtual void DropItem() 
     {
-        Debug.Log("æ∆¿Ã≈€∂≥≤ﬁ");
+        
         int rand = Random.Range(0, dropList.Count);
         randValue = rand;
         if (dropList[rand].name == "Coin")
             DropGold(dropList[rand]);
-        
-            Instantiate(dropList[0].prefab, transform.position, Quaternion.identity);
+
+        Instantiate(dropList[rand].prefab, transform.position, Quaternion.identity);
+        PrefabItem item = dropList[rand].prefab.GetComponent<PrefabItem>();
+        item.ItemSet(this,rand);
     }
 
     protected virtual void Attack()

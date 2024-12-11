@@ -102,7 +102,6 @@ public class Slot : MonoBehaviour
         // 아이템의 정보 가져오기
     }
 
-
     public void AddItem(PrefabItem slotitem)
     {
         icon.sprite = slotitem.icon;
@@ -148,29 +147,74 @@ public class Slot : MonoBehaviour
             case ItemType.Weapon:
                 InvenWeapon();
                 break;
+            case ItemType.Helmet:
+                InvenHelmet();
+                break;
             case ItemType.use:
                 InvenUseItem();
                 break;
             case ItemType.Armor:
                 InvenArmor();
                 break;
+            case ItemType.Shoes:
+                InvenShoes();
+                break;
             default:
                 break;
         }
     }
 
+    public void UsePoion()
+    {
+        switch (potiontype)
+        {
+            case PotionType.Heal:
+                UseHealPotion();
+                break;
+            case PotionType.AttackUp:
+                DamageUp();
+                break;
+            case PotionType.AtkSpeedUp:
+                AttackSpeedUp();
+                break;
+
+        }
+    }
+
+    // 장비창 슬롯 따로 구현 해서 slot에 데이터를 equipSlot에 데이터 전달 해서 구현
+    // 버튼 클릭시 장비 해제 (데이터를 바탕으로 인벤 아이템 추가)
+    // 장비창에 아이템 장착 되어있을시 이름 동일이면 무시 다르면 교체(장착중인거 인벤추가).3
+
     public void InvenWeapon()
     {
+        inventory.weapon.image.sprite = icon.sprite;
+        player.DamageUp(damage);
+        player.EquipWeapon();
         Debug.Log("무기 착용");
-        //슬롯에 방어구착용 및 옷 입히기?
-        // 스텟 증가
+    }
+
+    public void InvenHelmet()
+    {
+        inventory.helmet.image.sprite = icon.sprite;
+        player.Defence(def);
+        player.EquipHelmet();
+        Debug.Log("투구 착용");
     }
 
     public void InvenArmor()
     {
+        inventory.armor.image.sprite = icon.sprite;
+        player.Defence(def);
+        player.EquipArmor();
         Debug.Log("방어구 착용");
-        //슬롯에 방어구착용 및 옷 입히기?
-        // 스텟 증가
+    }
+
+    public void InvenShoes()
+    {
+        inventory.shoes.image.sprite = icon.sprite;
+        player.Defence(def);
+        player.EquipShoes();
+        Debug.Log("신발 착용");
     }
 
     public void InvenUseItem()
@@ -189,24 +233,6 @@ public class Slot : MonoBehaviour
     public void BackHome()
     { 
         Debug.Log("귀환!");
-    }
-
-
-    public void UsePoion()
-    {
-        switch (potiontype)
-        {
-            case PotionType.Heal:
-                UseHealPotion();
-                break;
-            case PotionType.AttackUp:
-                DamageUp();
-                break;
-            case PotionType.AtkSpeedUp:
-                AttackSpeedUp();
-                break;
-
-        }
     }
 
     public void UseHealPotion()

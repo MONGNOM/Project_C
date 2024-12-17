@@ -34,9 +34,7 @@ public class Inventory : MonoBehaviour
         ani = GetComponent<Animator>();
         MaxKg = 200;
         CurKg = 0;
-        MaxWeightText(MaxKg);
-        CurWeighttext(CurKg);
-        WeightChange(CurKg);
+        
         player = FindAnyObjectByType<Player>();
     }
     private void Start()
@@ -44,6 +42,10 @@ public class Inventory : MonoBehaviour
         inventoryMaxweight += MaxWeightText;
         inventoryCurweight += CurWeighttext;
         inventoryCurweight += WeightChange;
+
+        MaxWeightText(MaxKg);
+        CurWeighttext(CurKg);
+        WeightChange(CurKg);
     }
 
     private void WeightChange(float weight)

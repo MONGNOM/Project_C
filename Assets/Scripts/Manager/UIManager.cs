@@ -39,7 +39,7 @@ public class UIManager : MonoBehaviour
     {
         if (instance != null)
         {
-            Destroy(instance);
+            Destroy(this);
         }
         else
         {

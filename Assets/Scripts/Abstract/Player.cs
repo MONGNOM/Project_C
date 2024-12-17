@@ -65,12 +65,11 @@ public abstract class Player : MonoBehaviour
     {
         if (instance != null)
         {
-            Destroy(this);
+            Destroy(gameObject);
         }
         else
         {
             instance = this;
-
             DontDestroyOnLoad(gameObject);
         }
 
@@ -91,12 +90,6 @@ public abstract class Player : MonoBehaviour
 
     protected void Start()
     {
-        UIManager.instance.maxHp.text = maxHp.ToString();
-        UIManager.instance.damage.text = damage.ToString();
-        UIManager.instance.attackSpeed.text = attackSpeed.ToString();
-        UIManager.instance.def.text = def.ToString();
-        inventory = UIManager.instance.inven;
-
         if (Gamepad.current != null)
         {
             // Gamepad가 연결되어 있다면 Control Scheme을 Gamepad로 설정
@@ -108,6 +101,11 @@ public abstract class Player : MonoBehaviour
             Debug.LogWarning("컨트롤러 연결실패");
         }
 
+        inventory = UIManager.instance.inven;
+        UIManager.instance.maxHp.text = maxHp.ToString();
+        UIManager.instance.damage.text = damage.ToString();
+        UIManager.instance.attackSpeed.text = attackSpeed.ToString();
+        UIManager.instance.def.text = def.ToString();
 
         // StartCoroutine(AutoPickUp()); 티스토리작성 코루틴
     }

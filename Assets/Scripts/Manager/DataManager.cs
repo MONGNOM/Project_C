@@ -13,13 +13,14 @@ public class DataManager : MonoBehaviour
     string filename = "Save";
     private void Awake()
     {
-        if (instance == null)
+        if (instance != null)
         {
-            instance = this;
+            Destroy(this);
         }
         else
         { 
-            Destroy(instance);
+            instance = this;
+            DontDestroyOnLoad(gameObject);
         }
 
         path = Application.persistentDataPath + "/";

@@ -17,6 +17,11 @@ public class GameManager : MonoBehaviour
         
     }
 
+    public void MainScene()
+    {
+        SceneManager.LoadScene("Main");
+    }
+
     public void ChangeScene()
     {
         SceneManager.LoadScene("Stage 2");

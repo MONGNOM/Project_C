@@ -141,6 +141,7 @@ public class Inventory : MonoBehaviour
     {
         UIManager.instance.maxKg.text = maxKg.ToString() + " /";
     }
+
     private void CurWeighttext(float curKg)
     {
         UIManager.instance.curKg.text = curKg.ToString();

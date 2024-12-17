@@ -25,10 +25,18 @@ public class UIManager : MonoBehaviour
     [Header("인벤토리 코인금액")]
     public TextMeshProUGUI inventoryCoin;
 
+    [Header("Stage ui")]
+    public GameObject stageCanvas;
+
+    [Header("Main ui")]
+    public GameObject mainCanvas;
+    
+    [Header("인벤토리")]
+    public Inventory inven;
+
 
     void Awake()
     {
-
         if (instance != null)
         {
             Destroy(instance);
@@ -39,7 +47,17 @@ public class UIManager : MonoBehaviour
 
             DontDestroyOnLoad(gameObject);
         }
+    }
 
-        inventoryCoin.text = 0.ToString();
+    public void MainUI()
+    {
+        stageCanvas.SetActive(false);
+        mainCanvas.SetActive(true);
+    }
+
+    public void StageUI()
+    {
+        mainCanvas.SetActive(false);
+        stageCanvas.SetActive(true);
     }
 }

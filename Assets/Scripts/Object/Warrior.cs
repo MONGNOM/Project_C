@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using static UnityEngine.UI.Image;
 
 public class Warrior : Player
@@ -12,4 +13,6 @@ public class Warrior : Player
         base.Start();
         boxRange = new Vector2(2, 2);
     }
+
+
 }

@@ -13,8 +13,10 @@ enum PlayerState { Idle, Walk, TakeHit, Attack, Die}
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(SpriteRenderer))]
+[System.Serializable]
 public abstract class Player : MonoBehaviour 
 {
+    private static Player instance;
     public float CurHp { get {return curHp; } private set { curHp = value; Hp?.Invoke(curHp); } }
     public event Action<float> Hp;
     public float Damage { get { return damage; } private set { damage = value; damageAction?.Invoke(damage); } }
@@ -61,6 +63,17 @@ public abstract class Player : MonoBehaviour
 
     private void Awake()
     {
+        if (instance != null)
+        {
+            Destroy(this);
+        }
+        else
+        {
+            instance = this;
+
+            DontDestroyOnLoad(gameObject);
+        }
+
         rigid = GetComponent<Rigidbody2D>();
         playerInput = GetComponent<PlayerInput>();
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -82,6 +95,7 @@ public abstract class Player : MonoBehaviour
         UIManager.instance.damage.text = damage.ToString();
         UIManager.instance.attackSpeed.text = attackSpeed.ToString();
         UIManager.instance.def.text = def.ToString();
+        inventory = UIManager.instance.inven;
 
         if (Gamepad.current != null)
         {

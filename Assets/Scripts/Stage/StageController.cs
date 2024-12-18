@@ -20,6 +20,7 @@ public class StageController : MonoBehaviour
     {
         SceneManager.LoadScene(stageName);
 
+
         if (StageUi.instance == null)
             return;
 

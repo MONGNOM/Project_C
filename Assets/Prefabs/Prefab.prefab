@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: -1905340041
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 662cac2804290194aac48135cc43bd33, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a7c2a8bf742930d4498ebba030daf763, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -100,18 +100,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: -3223465868206533737}
-  itemtype: 4
-  usetype: 1
-  potiontype: 2
-  icon: {fileID: 21300000, guid: 662cac2804290194aac48135cc43bd33, type: 3}
-  name: Jelly
+  itemtype: 3
+  usetype: 0
+  potiontype: 0
+  icon: {fileID: 21300000, guid: a7c2a8bf742930d4498ebba030daf763, type: 3}
+  name: Shoes
   damage: 0
-  attackspeed: 2
-  def: 0
-  kg: 0.05
-  heal: 0
-  price: 5
-  description: jelly
+  attackspeed: 0
+  def: 10
+  kg: 0.1
+  heal: 100
+  price: 100
+  description: potion
 --- !u!61 &7462468017276138540
 BoxCollider2D:
   m_ObjectHideFlags: 0

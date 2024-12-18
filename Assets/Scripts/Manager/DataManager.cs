@@ -43,7 +43,8 @@ public class DataManager : MonoBehaviour
 
     public void LoadData()
     {
-        // 재접속시 사용
+        // 재접속시 사용 start에서 해도 되겠네
+        // 아니면 이게임도 슬롯으로 구현 ㄱ?
         string data = File.ReadAllText(path + filename);
         JsonUtility.FromJsonOverwrite(data, player);
         Debug.Log("Load");

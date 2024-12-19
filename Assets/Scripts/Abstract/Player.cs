@@ -334,14 +334,17 @@ public abstract class Player : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         // 아이템 픽업
-        PrefabItem item = collision.GetComponent<PrefabItem>();
-
-        if (item.name != "Coin" && inventory.CurKg < inventory.MaxKg)
-        {
-            inventory.InventoryAddItem(item);
+        if (!collision.GetComponent<PrefabItem>())
             return;
-        }
 
-        UIManager.instance.inventoryCoin.text = item.price.ToString();// 코인 액수 전달
+            PrefabItem item = collision.GetComponent<PrefabItem>();
+
+            if (item.name != "Coin" && inventory.CurKg < inventory.MaxKg)
+            {
+                inventory.InventoryAddItem(item);
+                return;
+            }
+            UIManager.instance.inventoryCoin.text = item.price.ToString();// 코인 액수 전달
+        
     }
 }

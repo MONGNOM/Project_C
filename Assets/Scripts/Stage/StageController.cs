@@ -33,7 +33,6 @@ public class StageController : MonoBehaviour
         if (stageIndex < stage.Length)
         {
             SceneManager.LoadScene(stage[stageIndex]);
-            StageUi.instance.ShowStageUi();
             Debug.Log(stage[stageIndex]);
             stageIndex++;
         }
@@ -41,12 +40,7 @@ public class StageController : MonoBehaviour
         {
             stageIndex = 0;
             SceneManager.LoadScene("Main");
-            StageUi.instance.HideStageUi();
         }
-
-        
-
-
         // 다음으로 가는 string 정보를 가져와야함
         // 포탈 이용시 다음씬 || 공략 혹은 귀환서시 메인 씬
     }

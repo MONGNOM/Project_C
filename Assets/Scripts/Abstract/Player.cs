@@ -123,7 +123,8 @@ public abstract class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
-        DetectEnemy();
+        SerchEnemy();
+
         //ItemPickUp();
 
         if (inPutMove.x >= 0)
@@ -200,7 +201,7 @@ public abstract class Player : MonoBehaviour
         CurHp -= damage;
     }
 
-    protected virtual void DetectEnemy()
+    protected virtual void SerchEnemy()
     {
         Collider2D collider = Physics2D.OverlapBox(transform.position, boxRange, 0, LayerMask.GetMask("Monster"));
         if (collider != null)
@@ -232,9 +233,8 @@ public abstract class Player : MonoBehaviour
         }
     }
 
-    protected virtual void Attack(Collider2D collider) // 굳이 상속x // 몬스터 동일
+    protected virtual void Attack(Collider2D collider)
     {
-        Debug.Log("공격ㄱ");
         collider.GetComponent<Monster>().MonsterTakeHit(damage);
         animator.SetBool("attack", true);
     }

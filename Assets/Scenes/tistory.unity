@@ -1225,6 +1225,9 @@ MonoBehaviour:
   maxKg: {fileID: 1463824199}
   curKg: {fileID: 1383112896}
   inventoryCoin: {fileID: 1834064953}
+  stageCanvas: {fileID: 0}
+  mainCanvas: {fileID: 0}
+  inven: {fileID: 0}
 --- !u!4 &344321251
 Transform:
   m_ObjectHideFlags: 0
@@ -1554,7 +1557,7 @@ TilemapRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -47764723
-  m_SortingLayer: 7
+  m_SortingLayer: 8
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
@@ -10602,7 +10605,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3242912479881436469, guid: d95dd68f59b6f8043a997aa216595413, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3585300777305261367, guid: d95dd68f59b6f8043a997aa216595413, type: 3}
+      propertyPath: maxHp
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4210065323450790395, guid: d95dd68f59b6f8043a997aa216595413, type: 3}
       propertyPath: m_LocalPosition.x
@@ -10679,7 +10686,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5802282987303757987, guid: 75343e330120be94cbb16c4ea85b03ce, type: 3}
       propertyPath: damage
-      value: 1
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 5802282987303757987, guid: 75343e330120be94cbb16c4ea85b03ce, type: 3}
       propertyPath: inventory
@@ -10687,11 +10694,11 @@ PrefabInstance:
       objectReference: {fileID: 1831672959}
     - target: {fileID: 5802282987303757987, guid: 75343e330120be94cbb16c4ea85b03ce, type: 3}
       propertyPath: boxRange.x
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5802282987303757987, guid: 75343e330120be94cbb16c4ea85b03ce, type: 3}
       propertyPath: boxRange.y
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5802282987303757987, guid: 75343e330120be94cbb16c4ea85b03ce, type: 3}
       propertyPath: pickupRange.x

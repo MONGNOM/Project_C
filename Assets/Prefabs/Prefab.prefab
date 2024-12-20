@@ -74,9 +74,9 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1905340041
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: a7c2a8bf742930d4498ebba030daf763, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 68a662c7cb7fc324da2f34a8ed4f5949, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -100,18 +100,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: -3223465868206533737}
-  itemtype: 3
-  usetype: 0
-  potiontype: 0
-  icon: {fileID: 21300000, guid: a7c2a8bf742930d4498ebba030daf763, type: 3}
-  name: Shoes
-  damage: 0
+  itemtype: 4
+  usetype: 1
+  potiontype: 3
+  icon: {fileID: 21300000, guid: 68a662c7cb7fc324da2f34a8ed4f5949, type: 3}
+  name: Damage potion
+  damage: 50
   attackspeed: 0
-  def: 10
-  kg: 0.1
-  heal: 100
-  price: 100
-  description: potion
+  def: 0
+  kg: 0.001
+  heal: 0
+  price: 500
+  description: Damage Up !
 --- !u!61 &7462468017276138540
 BoxCollider2D:
   m_ObjectHideFlags: 0
